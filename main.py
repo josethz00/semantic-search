@@ -16,12 +16,12 @@ pinecone.init(
 )
 
 # Create a Pinecone index
-if 'semantic_search' not in pinecone.list_indexes():
+if 'semantic-search' not in pinecone.list_indexes():
     print('Creating pinecone index...')
-    pinecone.create_index('semantic_search', dimension=1536)
+    pinecone.create_index('semantic-search', dimension=1536)
 
 # Connect to the index
-index = pinecone.Index('semantic_search')
+index = pinecone.Index('semantic-search')
 
 quora_dataset = load_dataset('quora', split='train[240000:320000]')
 
