@@ -10,6 +10,11 @@ load_dotenv()
 openai.api_key = os.getenv("OPEN_AI_API_KEY")
 MODEL = "text-embedding-ada-002"
 
+pinecone.init(
+    api_key=os.getenv("PINECONE_API_KEY"),
+    environment=os.getenv("PINECONE_ENV")
+)
+
 # Create a Pinecone index
 if 'semantic_search' not in pinecone.list_indexes():
     print('Creating pinecone index...')
