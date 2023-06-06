@@ -37,3 +37,11 @@ for i in tqdm(range(0, len(quora_dataset['text']), batch_size)):
     to_upsert = zip(ids_batch, embeds, meta)
     # upsert to Pinecone
     index.upsert(vectors=list(to_upsert))
+
+query = input("Enter a query: ")
+
+xq = openai.Embedding.create(input=query, engine=MODEL)['data'][0]['embedding']
+res = index.query([xq], top_k=5, include_metadata=True)
+
+for match in res['matches']:
+    print(f"{match['score']:.2f}: {match['metadata']['text']}")
