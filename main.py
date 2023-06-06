@@ -18,7 +18,7 @@ pinecone.init(
 # Create a Pinecone index
 if 'semantic_search' not in pinecone.list_indexes():
     print('Creating pinecone index...')
-    pinecone.create_index('semantic_search', dimension=len(1536))
+    pinecone.create_index('semantic_search', dimension=1536)
 
 # Connect to the index
 index = pinecone.Index('semantic_search')
