@@ -1,0 +1,5 @@
+datasets
+openai
+python-dotenv
+tdqm
+pinecone-client
