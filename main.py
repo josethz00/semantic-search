@@ -24,7 +24,9 @@ if 'semantic-search' not in pinecone.list_indexes():
 index = pinecone.Index('semantic-search')
 
 quora_dataset = load_dataset('quora', split='train[240000:320000]')
-questions = [q['text'] for q in quora_dataset['questions']]
+questions = []
+for record in quora_dataset['questions']:
+    questions.extend(record['text'])
 questions = list(set(questions))  # remove duplicates
 
 batch_size = 32  # process everything in batches of 32
