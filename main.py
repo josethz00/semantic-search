@@ -30,7 +30,7 @@ for record in quora_dataset['questions']:
 questions = list(set(questions))  # remove duplicates
 print(len(questions))
 
-batch_size = 32  # process everything in batches of 200
+batch_size = 200  # process everything in batches of 200
 for i in tqdm(range(0, len(questions), batch_size)):
     # set end position of batch
     i_end = min(i+batch_size, len(questions))
