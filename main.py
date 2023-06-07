@@ -28,7 +28,6 @@ questions = []
 for record in quora_dataset['questions']:
     questions.extend(record['text'])
 questions = list(set(questions))  # remove duplicates
-print(len(questions))
 
 batch_size = 200  # process everything in batches of 200
 for i in tqdm(range(0, len(questions), batch_size)):
@@ -43,8 +42,6 @@ for i in tqdm(range(0, len(questions), batch_size)):
     # prep metadata and upsert batch
     meta = [{'text': line} for line in lines_batch]
     to_upsert = zip(ids_batch, embeds, meta)
-
-    print(to_upsert, embeds)
 
     # upsert to Pinecone
     index.upsert(vectors=list(to_upsert))
