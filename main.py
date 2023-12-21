@@ -23,7 +23,7 @@ if 'semantic-search' not in pinecone.list_indexes():
 # Connect to the index
 index = pinecone.Index('semantic-search')
 
-quora_dataset = load_dataset('quora', split='train[240000:244000]')
+quora_dataset = load_dataset('quora', split='train[240000:241000]')
 questions = []
 for record in quora_dataset['questions']:
     questions.extend(record['text'])
@@ -52,4 +52,4 @@ xq = openai.Embedding.create(input=query, engine=MODEL)['data'][0]['embedding']
 res = index.query([xq], top_k=5, include_metadata=True)
 
 for match in res['matches']:
-    print(f"{match['score']:.3f}: {match['metadata']['questions']}")
+    print(f"{match['score']:.3f}: {match['metadata']['text']}")
